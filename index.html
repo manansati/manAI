@@ -99,7 +99,7 @@
         <!-- Header -->
         <header class="p-4 border-b border-gray-200 bg-indigo-600 text-white">
             <h1 class="text-xl font-bold">🎯 Precise AI Assistant</h1>
-            <p class="text-sm opacity-80">Contextual Chat, Image Generation, and Image Understanding Enabled</p>
+            <p class="text-sm opacity-80">Contextual Chat, and Image Understanding Enabled</p>
         </header>
 
         <!-- Message History -->
@@ -108,11 +108,11 @@
                 <div class="bg-indigo-100 p-3 rounded-xl rounded-tl-none shadow max-w-xs md:max-w-md">
                     <p class="text-sm text-indigo-800">Hello! I am a Deepanshu assistant. I can remember our conversation now!</p>
                     <ul class="list-disc ml-4 text-xs">
-                        <li>I can include **clickable links** in my answers and provide **source citations**.</li>
+                        <li>I can include *clickable links* in my answers and provide *source citations*.</li>
                         <li>Ask follow-up questions without repeating context.</li>
                         
-                        <li>Click the **paperclip** to upload an image and ask a question about it.</li>
-                            
+                        <li>Click the *paperclip* to upload an image and ask a question about it.</li>
+
                     </ul>
                 </div>
             </div>
@@ -186,9 +186,9 @@
         // you MUST insert your actual Gemini API key here:
         const apiKey = ""; 
         // Gemini API for text (with grounding) and multimodal (text + image)
-        const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+        const geminiApiUrl = https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey};
         // Imagen API for image generation
-        const imagenApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+        const imagenApiUrl = https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey};
 
         // UI Elements
         const chatForm = document.getElementById('chat-form');
@@ -263,7 +263,7 @@
          */
         function displayMessage(sender, text, sources = [], imageUrl = null) {
             const messageWrapper = document.createElement('div');
-            messageWrapper.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+            messageWrapper.className = flex ${sender === 'user' ? 'justify-end' : 'justify-start'};
 
             const messageBubble = document.createElement('div');
             messageBubble.className = `p-3 rounded-xl shadow max-w-xs md:max-w-md ${
@@ -299,7 +299,7 @@
                 sources.slice(0, 3).forEach(source => { // Limit to top 3 sources
                     if (source.title && source.uri) {
                          // Note: These source links are separate from inline links in the text
-                         sourcesHtml += `<li><a href="${source.uri}" target="_blank" class="text-indigo-600 hover:text-indigo-800">${source.title}</a></li>`;
+                         sourcesHtml += <li><a href="${source.uri}" target="_blank" class="text-indigo-600 hover:text-indigo-800">${source.title}</a></li>;
                     }
                 });
                 sourcesHtml += '</ul>';
@@ -343,7 +343,7 @@
                         await new Promise(resolve => setTimeout(resolve, delay));
                         return callGeminiTextOrMultimodalAPI(contentsPayload, attempt + 1);
                     }
-                    throw new Error(`API response failed with status: ${response.status}`);
+                    throw new Error(API response failed with status: ${response.status});
                 }
 
                 const result = await response.json();
@@ -399,14 +399,14 @@
                         await new Promise(resolve => setTimeout(resolve, delay));
                         return callImagenAPI(prompt, attempt + 1);
                     }
-                    throw new Error(`Imagen API response failed with status: ${response.status}`);
+                    throw new Error(Imagen API response failed with status: ${response.status});
                 }
 
                 const result = await response.json();
                 const base64Data = result.predictions?.[0]?.bytesBase64Encoded;
 
                 if (base64Data) {
-                    return { text: "Here is the image I generated based on your request:", sources: [], imageUrl: `data:image/png;base64,${base64Data}` };
+                    return { text: "Here is the image I generated based on your request:", sources: [], imageUrl: data:image/png;base64,${base64Data} };
                 } else {
                     return { text: "I couldn't generate an image for that prompt. Please try a different description, or ensure the prompt is specific.", sources: [], imageUrl: null };
                 }
@@ -466,7 +466,7 @@
 
             // --- API Key Check for Local Execution ---
             if (apiKey === "AIzaSyCj748rEdD2hxUjAOQa56N1UudjJoFzozM") {
-                const message = "### API Key Error\n\nYou must provide a valid **Gemini API key** inside the `const apiKey = \"\";` variable in the JavaScript code to run this application outside of the Google Canvas environment.";
+                const message = "### API Key Error\n\nYou must provide a valid *Gemini API key* inside the const apiKey = \"\"; variable in the JavaScript code to run this application outside of the Google Canvas environment.";
                 displayMessage('ai', message, [], null);
                 userInput.value = '';
                 // Since no API call was made, we don't push anything to chatHistory
